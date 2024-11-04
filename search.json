@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Yinuo Tu",
+    "section": "",
+    "text": "Hi! I’m Yinuo Tu, but you can also call me Cathy. My name, inspired by a Chinese idiom, means “A promise as valuable as gold.”\nI am an ScM student in Biostatistics at the Johns Hopkins Bloomberg School of Public Health. My interests lie in leveraging data and analytics to unlock new possibilities in public health and biomedicine.\nIn my free time, I enjoy hiking, traveling, and cooking."
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "Yinuo Tu",
+    "section": "",
+    "text": "Hi! I’m Yinuo Tu, but you can also call me Cathy. My name, inspired by a Chinese idiom, means “A promise as valuable as gold.”\nI am an ScM student in Biostatistics at the Johns Hopkins Bloomberg School of Public Health. My interests lie in leveraging data and analytics to unlock new possibilities in public health and biomedicine.\nIn my free time, I enjoy hiking, traveling, and cooking."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Yinuo Tu",
+    "section": "  Education ",
+    "text": "Education \n Johns Hopkins University, Baltimore, United States  2024 - 2026\n ScM in Biostatistics  📍US\n Zhejiang University, Zhejiang, China  2020 - 2024\n B.S. in Chemical Engineering  📍CN"
+  },
+  {
+    "objectID": "Example analysis.html",
+    "href": "Example analysis.html",
+    "title": "Example Analysis",
+    "section": "",
+    "text": "Dataset: The Gapminder dataset provides country-level data on key indicators such as life expectancy, GDP per capita, and population from 1952 to 2007. This data, originally sourced from Gapminder.org, offers valuable insights into global health and economic trends.\nQuestion: “How have life expectancy and GDP per capita evolved over time, and what regional differences exist in these metrics?”\nIntended audience: Policymakers, economists, researchers, and anyone interested in global health and economic trends.\nData Dictionary\n\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\ncountry\nName of the country\n\n\ncontinent\nContinent where the country is located\n\n\nyear\nYear of the data point\n\n\nlifeExp\nAverage life expectancy at birth, in years\n\n\npop\nTotal opulation of the country\n\n\ngdpPercap\nPer-capita GDP\n\n\n\n\nKey Term:\nGDP per capita is the total economic output of a country divided by its population, often used as an indicator of a country’s standard of living."
+  },
+  {
+    "objectID": "Example analysis.html#plot-1-life-expectancy-distribution-by-continent-2007",
+    "href": "Example analysis.html#plot-1-life-expectancy-distribution-by-continent-2007",
+    "title": "Example Analysis",
+    "section": "Plot 1-Life Expectancy Distribution by Continent (2007)",
+    "text": "Plot 1-Life Expectancy Distribution by Continent (2007)\nThis boxplot shows the distribution of life expectancy for each continent in the year 2007. Each box represents the interquartile range (IQR), with the line inside the box indicating the median life expectancy for each continent.\n\nggplot(gapminder_1, aes(x = continent, y = lifeExp, fill = continent)) +\n  geom_boxplot() +\n  scale_fill_manual(values = c(\"lightpink\", \"#7EEB03\", \"#FBE700\", \"lightblue\", \"#9F8AD4\")) +\n  labs(\n    title = \"Life Expectancy Distribution by Continent (2007)\",\n    subtitle = \"Regional disparities in life expectancy\",\n    x = \"Continent\",\n    y = \"Life Expectancy (years)\",\n    caption = \"Data Source: Gapminder\"\n  ) +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(hjust = 0.5, size = 14, face = \"bold\"),\n    plot.subtitle = element_text(hjust = 0.5, size = 12),\n    axis.text = element_text(size = 10),\n    axis.title = element_text(size = 11),\n    legend.position = \"none\" \n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nPlot 1 shows that there are significant regional disparities in life expectancy, with Africa lagging behind other continents. These differences may be attributed to factors such as economic development, healthcare access, and infrastructure."
+  },
+  {
+    "objectID": "Example analysis.html#plot-2-income-and-life-expectancy-across-continents-in-2007",
+    "href": "Example analysis.html#plot-2-income-and-life-expectancy-across-continents-in-2007",
+    "title": "Example Analysis",
+    "section": "Plot 2-Income and Life Expectancy Across Continents in 2007",
+    "text": "Plot 2-Income and Life Expectancy Across Continents in 2007\nThis bubble plot shows the relationship between GDP per capita and life expectancy across continents in the year 2007. Each bubble’s size represents the population of the country, with color indicating the continent.\n\ngapminder_2 &lt;- gapminder_1 %&gt;%\n  mutate(\n    pop2 = pop + 1,  # for plot\n    continent = as.factor(continent) %&gt;%\n      fct_relevel(\"Asia\", \"Americas\", \"Europe\", \"Africa\", \"Oceania\")\n  )\n\npp &lt;- ggplot(data = gapminder_2, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point(aes(size = pop, color = continent)) +\n  geom_point(aes(size = pop2), color = \"#606F7B\", shape = 21) +\n  scale_x_log10(breaks = c(500, 1000, 2000, 4000, 8000, 16000, 32000, 64000)) +\n  scale_y_continuous(breaks = seq(0, 90, by = 10)) +\n  scale_color_manual(values = c(\"lightpink\", \"#7EEB03\", \"#FBE700\", \"lightblue\", \"#9F8AD4\")) +\n  scale_size_continuous(range = c(1, 30)) +\n  guides(size = FALSE, color = FALSE) +\n  labs(\n    title = \"Income and Life Expectancy Across Continents in 2007\",\n    subtitle = \"Exploring the relationship between GDP per capita and life expectancy by continent,\\nwith bubble sizes representing population\",\n    x = \"Income\",\n    y = \"Life Expectancy (years)\",\n    caption = \"Data Source: Gapminder.org\"\n  ) +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(hjust = 0.5),\n    plot.subtitle = element_text(hjust = 0.5)\n  )\n\ngapminder_plot &lt;- pp +\n  annotate(\"text\", x = 4000, y = 45, hjust = 0.5,\n           size = 65, color = \"#999999\",\n           label = \"2007\", alpha = .3) +\n  annotate(\"text\", x = 21000, y = 2, \n           label = \"per person (GDP/capita, PPP$ inflation-adjusted)\",\n           size = 2.6, color = \"#999999\") +\n  theme(\n    plot.margin = unit(rep(1, 4), \"cm\"),\n    panel.grid.minor = element_blank(),\n    panel.grid.major = element_line(size = 0.2, color = \"#e5e5e5\"),\n    axis.title.y = element_text(margin = margin(r = 15), size = 11, family = \"Helvetica Neue Light\"),\n    axis.title.x = element_text(margin = margin(t = 15), size = 11, family = \"Helvetica Neue Light\"),\n    axis.text = element_text(family = \"Helvetica Neue Light\"),\n    axis.line = element_line(color = \"#999999\", size = 0.2)\n  ) +\n  coord_cartesian(ylim = c(4.1, 86))\n\ngapminder_plot\n\n\n\n\n\n\n\n\nHere I use “world” dataset from ggplot2 to plot a worldmap.\n\nworld &lt;- map_data(\"world\") %&gt;%\n  filter(region != \"Antarctica\") %&gt;%\n  mutate(\n    continent = countrycode(sourcevar = region, origin = \"country.name\", destination = \"continent\") %&gt;%\n      as.factor() %&gt;%\n      fct_relevel(\"Asia\", \"Americas\", \"Europe\", \"Africa\", \"Oceania\")\n  ) %&gt;%\n  drop_na(continent)\n\ncontinent_map &lt;- ggplot(data = world) +\n  geom_map(\n    map = world,\n    aes(long, lat, group = group, map_id = region, fill = continent)\n  ) +\n  theme_map() +\n  coord_map(xlim = c(-180, 180), ylim = c(-200, 200)) +\n  scale_fill_manual(values = c(\"lightpink\", \"#7EEB03\", \"#FBE700\", \"lightblue\", \"#9F8AD4\")) +\n  guides(fill = FALSE) +\n  theme(plot.background = element_rect(color = \"#B8C2CC\", fill = NA))\n\ncontinent_map\n\n\n\n\n\n\n\n\n\ngapminder_plot &lt;- gapminder_plot +\n  annotation_custom(\n    grob = ggplotGrob(continent_map),\n    xmin = log10(800),\n    xmax = log10(650000),\n    ymin = 5,\n    ymax = 42\n  )\n\ngapminder_plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nPlot 2shows the relationship between economic prosperity and health outcomes, with wealthier countries tending to have higher life expectancies. Regional disparities are evident, with African countries generally having lower incomes and life expectancies, while European and some Asian countries perform better."
+  },
+  {
+    "objectID": "Example analysis.html#part-3-life-expectancy-over-time-by-continent",
+    "href": "Example analysis.html#part-3-life-expectancy-over-time-by-continent",
+    "title": "Example Analysis",
+    "section": "Part 3-Life Expectancy Over Time by Continent",
+    "text": "Part 3-Life Expectancy Over Time by Continent\nThis line plot shows the trend in life expectancy over time from 1952 to 2007, faceted by continent. Each line represents a country.\n\nggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +\n  geom_line(aes(group = country)) +\n  scale_color_manual(values = c(\"lightpink\", \"#7EEB03\", \"#FBE700\", \"lightblue\", \"#9F8AD4\"))+\n  labs(\n    title = \"Life Expectancy Over Time by Continent\",\n    subtitle = \"Significant improvements in Asia and Africa\",\n    x = \"Year\",\n    y = \"Life Expectancy (years)\",\n    caption = \"Data Source: Gapminder.org\"\n  ) + \n  facet_wrap(~ continent)+\n theme_minimal() +\n  theme(\n    plot.title = element_text(hjust = 0.5),\n    plot.subtitle = element_text(hjust = 0.5)\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nPlot 3 shows that life expectancy has generally increased across all continents over time, while Asia and Africa have significant improvements, indicating global improvements in healthcare, sanitation, and economic conditions over time."
+  },
+  {
+    "objectID": "Example analysis.html#requirements-check",
+    "href": "Example analysis.html#requirements-check",
+    "title": "Example Analysis",
+    "section": "Requirements check:",
+    "text": "Requirements check:\n\nFunctions (At least five functions):\n\ndplyr functions\n\nfilter(): to filter dataset for specific years (e.g., 2007)\nmutate(): to create a new column for gdp (gdp = pop * gdpPercap)\narrange(): to sort data by gdp in descending order\ngroup_by(): to group data by continent for aggregation\nsummarize(): to calculate mean life expectancy by continent\n\ntidyr functions\n\npivot_longer(): to reshape data for analysis over time\n\nggplot2 functions\n\ngeom_boxplot(): to create a boxplot of life expectancy by continent\ngeom_point(): to create a bubble plot of gdp per capita vs life expectancy\ngeom_smooth(): to add trend lines to the bubble plot\ngeom_line(): to plot life expectancy trends over time by country\nfacet_wrap(): to create faceted plots for each continent\nscale_fill_manual() and scale_color_manual(): to apply custom colors by continent\nlabs(): to add titles, subtitles, captions, and axis labels\nannotate(): to add annotations (e.g., year “2007”)\n\n\nThree Plots Using Different geom_*() Functions:\nPlot 1: geom_boxplot()\nPlot 2: geom_point(), geom_smooth(), and geom_map()\nPlot 3: geom_line()\nFaceting: Plot 2 uses facet_wrap(~ continent).\nMargin content: next to the data dictionary, explaining the term GDP per capita."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\nYinuo Tu\n",
+    "section": "",
+    "text": "Yinuo Tu\n\nLinkedIn | GitHub | Email\n\n\n\nHi! I’m Yinuo Tu. I am currently a student at the Johns Hopkins Bloomberg School of Public Health, studying biostatistics. I am passionate about leveraging data to drive insights in public health and biomedicine."
+  }
+]
