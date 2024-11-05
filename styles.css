@@ -1,0 +1,10 @@
+/* css styles */
+.margin {
+    float: right;
+    width: 40%;
+    margin-left: 1em;
+    font-size: 0.9em;
+    color: #666;
+    position: relative;
+    top: -60px;  
+}

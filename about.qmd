@@ -1,0 +1,23 @@
+---
+title: "Yinuo Tu"
+---
+
+
+## <span style="color: #030303;"> <i class="fa-solid fa-user"></i> About Me</span>
+
+
+Hi! I’m Yinuo Tu, but you can also call me Cathy. My name, inspired by a Chinese idiom, means "A promise as valuable as gold."
+
+I am an ScM student in Biostatistics at the Johns Hopkins Bloomberg School of Public Health. My interests lie in leveraging data and analytics to unlock new possibilities in public health and biomedicine.
+
+In my free time, I enjoy hiking, traveling, and cooking.
+
+Feel free to visit my personal website: [Yinuo Tu](https://yinuotu.github.io/).
+
+## <span style="color: #030303;"> <i class="fa-solid fa-user"></i> Education </span>
+
+| **<span style="color:  #030303;"> Johns Hopkins University, Baltimore, United States </span>**  [2024 - 2026]{style="float:right"}  
+| <span style="color: #545454;"> ScM in Biostatistics </span> [📍US]{style="float:right"}  
+
+| **<span style="color:  #030303;"> Zhejiang University, Zhejiang, China </span>**  [2020 - 2024]{style="float:right"} 
+| <span style="color: #545454;"> B.S. in Chemical Engineering </span>  [📍CN]{style="float:right"} 

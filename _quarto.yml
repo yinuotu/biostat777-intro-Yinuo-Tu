@@ -1,0 +1,24 @@
+project:
+  type: website
+
+publish:
+  provider: gh-pages
+  branch: gh-pages
+
+website:
+  title: "biostat777-intro-Yinuo-Tu"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - Example analysis.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

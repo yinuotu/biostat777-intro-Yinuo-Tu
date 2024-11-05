@@ -1,0 +1,20 @@
+---
+image: "yinuotu.jpg"
+output:
+  postcards::trestles
+---
+
+<div style="text-align: center;">
+
+<img src="yinuotu.jpg" alt="Yinuo Tu" style="width: 180px; margin-top: 50px;">
+
+<h1>Yinuo Tu</h1>
+
+[LinkedIn](https://www.linkedin.com/in/yinuo-tu-9883872b7/) | [GitHub](https://github.com/yinuotu) | [Email](mailto:tuyinuo@outlook.com)
+
+</div>
+
+<div style="max-width: 600px; margin: 0 auto; text-align: left;">
+  <p>Hi! I’m Yinuo Tu. I am currently a student at the Johns Hopkins Bloomberg School of Public Health, studying biostatistics. I am passionate about leveraging data to drive insights in public health and biomedicine.</p>
+</div>
+
